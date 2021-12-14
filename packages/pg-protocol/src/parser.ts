@@ -25,6 +25,7 @@ import {
   MessageName,
   AuthenticationMD5Password,
   NoticeMessage,
+  MaxRowSizeMessage,
 } from './messages'
 import { BufferReader } from './buffer-reader'
 import assert from 'assert'
