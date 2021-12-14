@@ -105,7 +105,7 @@ export class Parser {
 
       // NOTE: Custom CARTO max row size limit
       if (code == MessageCodes.DataRow && this.maxRowSize > 0 && buffer.byteLength > this.maxRowSize) {
-        this.stream.emit('error', new Error('Row too large, was ' + buffer.byteLength + ' bytes'))
+        this.stream?.emit('error', new Error('Row too large, was ' + buffer.byteLength + ' bytes'))
       }
 
       // length is 1 Uint32BE - it is the length of the message EXCLUDING the code
