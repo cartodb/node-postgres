@@ -46,6 +46,8 @@ const emptyBuffer = Buffer.allocUnsafe(0)
 
 type StreamOptions = TransformOptions & {
   mode: Mode
+  stream?: NodeJS.ReadableStream
+  maxRowSize?: number
 }
 
 const enum MessageCodes {
