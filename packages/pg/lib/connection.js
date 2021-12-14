@@ -2,6 +2,7 @@
 
 var net = require('net')
 var EventEmitter = require('events').EventEmitter
+var defaults = require('./defaults')
 
 const { parse, serialize } = require('pg-protocol')
 
@@ -112,7 +113,7 @@ class Connection extends EventEmitter {
         this.emit('message', msg)
       }
       this.emit(eventName, msg)
-    })
+    }, defaults.maxRowSize)
   }
 
   requestSsl() {

@@ -76,6 +76,8 @@ const enum MessageCodes {
 export type MessageCallback = (msg: BackendMessage) => void
 
 export class Parser {
+  private stream: NodeJS.ReadableStream
+  private maxRowSize: number
   private buffer: Buffer = emptyBuffer
   private bufferLength: number = 0
   private bufferOffset: number = 0
@@ -87,6 +89,8 @@ export class Parser {
       throw new Error('Binary mode not supported yet')
     }
     this.mode = opts?.mode || 'text'
+    this.stream = opts?.stream
+    this.maxRowSize = opts?.maxRowSize || 0
   }
 
   public parse(buffer: Buffer, callback: MessageCallback) {
@@ -96,6 +100,12 @@ export class Parser {
     while (offset + HEADER_LENGTH <= bufferFullLength) {
       // code is 1 byte long - it identifies the message type
       const code = this.buffer[offset]
+
+      // NOTE: Custom CARTO max row size limit
+      if (code == MessageCodes.DataRow && this.maxRowSize > 0 && buffer.byteLength > this.maxRowSize) {
+        this.stream.emit('error', new Error('Row too large, was ' + buffer.byteLength + 'bytes'))
+      }
+
       // length is 1 Uint32BE - it is the length of the message EXCLUDING the code
       const length = this.buffer.readUInt32BE(offset + CODE_LENGTH)
       const fullMessageLength = CODE_LENGTH + length

@@ -66,6 +66,8 @@ module.exports = {
   keepalives: 1,
 
   keepalives_idle: 0,
+
+  maxRowSize: undefined
 }
 
 var pgTypes = require('pg-types')
