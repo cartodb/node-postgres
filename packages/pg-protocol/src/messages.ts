@@ -228,3 +228,8 @@ export class NoticeMessage implements BackendMessage, NoticeOrError {
   public line: string | undefined
   public routine: string | undefined
 }
+
+export class MaxRowSizeMessage {
+  public readonly name: MessageName = 'maxRowSize'
+  constructor (public length: number) {}
+}

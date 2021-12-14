@@ -196,6 +196,7 @@ class Client extends EventEmitter {
     con.on('copyInResponse', this._handleCopyInResponse.bind(this))
     con.on('copyData', this._handleCopyData.bind(this))
     con.on('notification', this._handleNotification.bind(this))
+    con.on('maxRowSize', this._handleMaxRowSize.bind(this))
   }
 
   // TODO(bmc): deprecate pgpass "built in" integration since this.password can be a function
@@ -379,6 +380,10 @@ class Client extends EventEmitter {
 
   _handleNotification(msg) {
     this.emit('notification', msg)
+  }
+
+  _handleMaxRowSize(msg) {
+    this.emit('maxRowSize', msg)
   }
 
   _handleNotice(msg) {
