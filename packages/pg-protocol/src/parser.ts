@@ -45,7 +45,7 @@ export type Packet = {
 const emptyBuffer = Buffer.allocUnsafe(0)
 
 type StreamOptions = TransformOptions & {
-  mode: Mode
+  mode?: Mode
   stream?: NodeJS.ReadableStream
   maxRowSize?: number
 }
@@ -78,7 +78,7 @@ const enum MessageCodes {
 export type MessageCallback = (msg: BackendMessage) => void
 
 export class Parser {
-  private stream: NodeJS.ReadableStream
+  private stream: NodeJS.ReadableStream | undefined
   private maxRowSize: number
   private buffer: Buffer = emptyBuffer
   private bufferLength: number = 0
