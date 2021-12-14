@@ -24,7 +24,7 @@
     "packet-reader": "1.0.0",
     "pg-connection-string": "^2.5.0",
     "pg-pool": "^3.4.1",
-    "pg-protocol": "^1.5.0",
+    "pg-protocol": "https://gitpkg.now.sh/CartoDB/node-postgres/packages/pg-protocol?cdb-8.7.1-development",
     "pg-types": "^2.1.0",
     "pgpass": "1.x"
   },
