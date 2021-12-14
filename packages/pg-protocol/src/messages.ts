@@ -28,6 +28,7 @@ export type MessageName =
   | 'authenticationSASLFinal'
   | 'error'
   | 'notice'
+  | 'maxRowSize'
 
 export interface BackendMessage {
   name: MessageName
