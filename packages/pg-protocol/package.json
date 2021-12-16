@@ -19,7 +19,7 @@
     "test": "mocha dist/**/*.test.js",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "preinstall": "yarn build",
+    "preinstall": "npm install",
     "prepublish": "yarn build",
     "pretest": "yarn build"
   },
